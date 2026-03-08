@@ -85,6 +85,8 @@ class PetApiService
             throw new StatusCodeException('Pet not found', 404);
         } else if ($statusCode === 400) {
             throw new StatusCodeException('Invalid ID supplied', 400);
+        }else if ($statusCode === 405) {
+            throw new StatusCodeException('Invalid input', 405);
         } else if ($statusCode !== 200) {
             throw new StatusCodeException('Unexpected error occurred', 500);
         }

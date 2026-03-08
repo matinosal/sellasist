@@ -21,7 +21,7 @@ class ApiExceptionListener
                 ];
             }
 
-            $event->setResponse(new JsonResponse($errors, 400));
+            $event->setResponse(new JsonResponse($errors, 405));
         }
     }
 }

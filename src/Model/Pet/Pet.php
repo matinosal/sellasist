@@ -5,12 +5,18 @@ namespace App\Model\Pet;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
+use Nelmio\ApiDocBundle\Attribute\Model;
+use OpenApi\Attributes as OA;
 
 use App\Model\Pet\Enum\Status;
 
+#[OA\Schema(
+    schema: "Pet"
+)]
 class Pet
 {
     #[Assert\PositiveOrZero]
+    #[OA\Property(example: 10000)]
     private int $id;
 
     #[Assert\Length(
@@ -18,6 +24,7 @@ class Pet
         max: 255,
         minMessage: "Name must be at least {{ limit }} characters long", 
         maxMessage: "Name cannot be longer than {{ limit }} characters")]
+    #[OA\Property(example: "Carmelo")]
     private string $name;
 
     #[Assert\Valid]
@@ -27,12 +34,26 @@ class Pet
     #[Assert\All([
         new Assert\Url(message: "The photo URL '{{ value }}' is not a valid URL"),
     ])]
+    #[OA\Property(
+        type: "array",
+        items: new OA\Items(
+            type: "string",
+            example: "http://test.com/",
+        )
+    )]
     private array $photoUrls;
 
     #[Assert\Valid]
+    #[OA\Property(
+        type: "array",
+        items: new OA\Items(
+            ref: new Model(type: Tag::class) 
+        )
+    )]
     private array $tags;
 
     #[Type(Status::class)]
+    #[OA\Property(example: "available")]
     private ?Status $status;
 
     public function getId(): int { return $this->id; }

@@ -2,6 +2,9 @@
 
 namespace App\Model\Pet;
 
+#[OA\Schema(
+    schema: "Category"
+)]
 class Category
 {
     private int $id;

@@ -3,8 +3,12 @@
 namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use OpenApi\Attributes as OA;
 use App\Model\Pet\Enum\Status;
 
+#[OA\Schema(
+    schema: "Pet Status Query"
+)]
 class PetStatusQueryDto
 {
     #[Assert\NotBlank(message: "Status is required")]

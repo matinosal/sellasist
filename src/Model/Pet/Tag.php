@@ -2,6 +2,9 @@
 
 namespace App\Model\Pet;
 
+#[OA\Schema(
+    schema: "Tag"
+)]
 class Tag
 {
     private int $id;
