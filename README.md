@@ -52,9 +52,8 @@ W projekcie znajdują się testy napisane w PHP (np. za pomocą PHPUnit). Aby je
 
 2. Uruchom testy za pomocą następującego polecenia:
    ```bash
-   docker compose exec app vendor/bin/phpunit
+   docker compose exec sellasist-matinosal vendor/bin/phpunit
    ```
-   *Uwaga:* `app` to nazwa głównego serwisu PHP w kontenerze Dockera. Jeśli używasz innej nazwy, dostosuj polecenie.
 
 ## Technologie użyte w projekcie
 
