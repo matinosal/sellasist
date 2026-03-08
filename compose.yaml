@@ -1,7 +1,8 @@
 ---
 services:
   php:
-    image: ${IMAGES_PREFIX:-}app-php
+    image: sellasist-matinosal
+    container_name: sellasist-matinosal
     restart: unless-stopped
     environment:
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
