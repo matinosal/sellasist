@@ -17,6 +17,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
+use OpenApi\Attributes as OA;
 use App\Dto\PetDto;
 use App\Dto\PetStatusQueryDto;
 use App\Exception\StatusCodeException;
@@ -32,15 +33,6 @@ final class PetsController extends AbstractController
     public function __construct(
         private PetApiService $apiService, 
     ) {
-    }
-
-    #[Route('/pet', name: 'app_pets', methods: ['GET'])]
-    public function index(): JsonResponse
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/PetsController.php',
-        ]);
     }
 
     #[Route('/pet', name: 'add_pet', methods: ['POST'])]
