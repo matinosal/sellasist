@@ -48,7 +48,7 @@ final class PetsController extends AbstractController
     ): JsonResponse
     {
         try {
-            $this->apiService->addPet($pets);
+            $this->apiService->addPet($pet);
         } catch (StatusCodeException $e) {
             return $this->json(['error' => $e->getMessage()], $e->getCode() ?: 500);
         }  catch (\Exception $e) {

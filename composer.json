@@ -30,6 +30,7 @@
         "zircote/swagger-php": "*"
     },
     "require-dev": {
+        "phpunit/phpunit": "^13.0",
         "symfony/maker-bundle": "^1.66"
     },
     "config": {
