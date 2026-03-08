@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
-class ApiExceptionListener
+class ApiValidationListener
 {
     public function onKernelException(ExceptionEvent $event): void
     {
@@ -22,6 +22,7 @@ class ApiExceptionListener
             }
 
             $event->setResponse(new JsonResponse($errors, 405));
+            $event->stopPropagation();
         }
     }
 }
