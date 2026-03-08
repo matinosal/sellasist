@@ -5,7 +5,7 @@ namespace App\Dto;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Model\Pet\Enum\Status;
 
-class PetStatusQuery
+class PetStatusQueryDto
 {
     #[Assert\NotBlank(message: "Status is required")]
     #[Assert\All([
