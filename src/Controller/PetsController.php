@@ -82,7 +82,7 @@ final class PetsController extends AbstractController
             return $this->json(['error' => 'An unexpected error occurred' . $e->getMessage()], 500);
         }
          
-        return $this->json($pet, 201);
+        return $this->json($pet, 200);
     }
 
     #[Route('/pet/findByStatus', name: 'find_by_status', methods: ['GET'])]
@@ -91,11 +91,16 @@ final class PetsController extends AbstractController
         summary: "Find pet by status",
         parameters: [
             new OA\Parameter(
-                name: "status",
+                name: "status[]",
                 in: "query",
                 required: true,
                 description: "Filter pets by status",
-                schema: new OA\Schema(ref: "#/components/schemas/Status"),
+                schema: new OA\Schema(
+                    type: "array",
+                    items: new OA\Items(
+                        ref: "#/components/schemas/Status"
+                    )
+                ),
                 style: "form",
                 explode: true
             )
@@ -133,7 +138,7 @@ final class PetsController extends AbstractController
     #[OA\Response(response: 200, description: "Pet deleted", 
         content: new OA\JsonContent(
             type: "object", 
-            properties: ['success' => new OA\Property(type: 'boolean', example: true)])
+            properties: ['success' => new OA\Property(property: "success", type: 'boolean', example: true)])
     )]
     #[OA\Response(response: 400, description: "Invalid ID supplied")]
     #[OA\Response(response: 404, description: "Pet not found")]
@@ -183,7 +188,9 @@ final class PetsController extends AbstractController
     )]
     #[OA\Parameter(name: "id", in: "path", required: true, description: "ID of pet to update", schema: new OA\Schema(type: "integer"))]
     #[OA\Response(response: 200, description: "Pet updated", 
-        content: new OA\JsonContent(ref: new Model(type: Pet::class))
+        content: new OA\JsonContent(
+            type: "object", 
+            properties: ['success' => new OA\Property(property: "success", type: 'boolean', example: true)])
     )]
     #[OA\Response(response: 400, description: "Invalid ID supplied")]
     #[OA\Response(response: 500, description: "An unexpected error occurred")]
